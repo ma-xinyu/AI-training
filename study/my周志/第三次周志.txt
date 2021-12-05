@@ -1,0 +1,121 @@
+Qt：
+	1.项目的结构：cd "路径"；tree /F
+		包路径建议放一个__init__.py
+
+C:\Users\Asus>cd "C:\Users\Asus\Desktop\day5\proj_bigmouse"
+
+C:\Users\Asus\Desktop\day5\proj_bigmouse>tree /F
+卷 OS 的文件夹 PATH 列表
+卷序列号为 C492-37F9
+C:.
+│  run_app.bat
+│  setup.py
+│
+├─bigapp
+│  │  main.py
+│  │  __init__.py
+│  │
+│  ├─ais
+│  │      bfish.py
+│  │      __init__.py
+│  │
+│  ├─uis
+│  │  │  bapp.py
+│  │  │  bdialog.py
+│  │  │  __init__.py
+│  │  │
+.......
+
+	2.setup安装（day05）
+		2.1写好setup.py内容
+		2.2管理员运行cmd
+
+C:\WINDOWS\system32>cd "C:\Users\Asus\Desktop\人工智能实训\01tech\day05\proj_bigmouth"
+
+C:\Users\Asus\Desktop\人工智能实训\01tech\day05\proj_bigmouth>python setup.py install
+running install
+running build
+running build_py
+creating build
+creating build\lib
+creating build\lib\bigapp
+..........
+Writing C:\Users\Asus\AppData\Local\Programs\Python\Python37\Lib\site-packages\bigapp-1.0-py3.7.egg-info
+
+	3.多线程的封装
+		new对象时 self.fish1 = BFish()	#括号！
+		线程启动：start；	run结束，线程死亡
+
+	4.信号和槽（signal and slot）
+		self.repaint	#刷新
+
+	5.random
+import random
+print( random.randint(1,10) )        # 产生 1 到 10 的一个整数型随机数  
+print( random.random() )             # 产生 0 到 1 之间的随机浮点数
+print( random.uniform(1.1,5.4) )     # 产生  1.1 到 5.4 之间的随机浮点数，区间可以不是整数
+print( random.choice('tomorrow') )   # 从序列中随机选取一个元素
+print( random.randrange(1,100,2) )   # 生成从1到100的间隔为2的随机整数
+print random.sample('zyxwvutsrqponmlkjihgfedcba',5)	# 多个字符中生成指定数量的随机字符
+print random.choice(['剪刀', '石头', '布'])		# 随机选取字符串
+items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+print random.shuffle(items)			# 打乱排序
+
+
+>>> import random
+>>> help(random)
+Help on module random:
+
+NAME
+    random - Random variable generators.
+
+MODULE REFERENCE
+    https://docs.python.org/3.7/library/random
+.........
+
+	6.图像的表示
+		opencv : pip install opencv-python
+		opencv辅助模块安装 : pip install opencv-contrib-python
+
+C:\>pip install opencv-contrib-python
+Collecting opencv-contrib-python
+  Using cached opencv_contrib_python-4.4.0.46-cp37-cp37m-win_amd64.whl (40.1 MB)
+Requirement already satisfied: numpy>=1.14.5 in c:\users\asus\appdata\local\programs\python\python37\lib\site-packages (from opencv-contrib-python) (1.19.4)
+Installing collected packages: opencv-contrib-python
+ERROR: Could not install packages due to an EnvironmentError: [WinError 5] 拒绝访问。: 'c:\\users\\asus\\appdata\\local\\programs\\python\\python37\\Lib\\site-packages\\cv2\\cv2.cp37-win_amd64.pyd'
+Consider using the `--user` option or check the permissions.
+
+(权限问题，解决方法)
+C:\>pip install opencv-contrib-python --user
+Collecting opencv-contrib-python
+  Using cached opencv_contrib_python-4.4.0.46-cp37-cp37m-win_amd64.whl (40.1 MB)
+Requirement already satisfied: numpy>=1.14.5 in c:\users\asus\appdata\local\programs\python\python37\lib\site-packages (from opencv-contrib-python) (1.19.4)
+Installing collected packages: opencv-contrib-python
+Successfully installed opencv-contrib-python-4.4.0.46
+
+		pyqt5-tools : pip install pyqt5-tools
+	
+		numpy : pip install numpy
+		scipy : pip install scipy
+
+		文档：	搜索：opencv.doc	numpy.doc
+		opencv：https://docs.opencv.org/4.5.0/
+			core. Core functionality
+			imgproc. Image Processing
+			imgcodecs. Image file reading and writing
+			videoio. Video I/O
+		numpy：https://numpy.org/doc/
+		- 图像就是一个数组：<class 'numpy.ndarray'>
+
+感想：
+	1.get到如何找到电脑中的隐藏文件夹
+	2.click声小的鼠标会让室友和自己在半夜都很舒服
+	3.有地方想不通的时候就停一下，去搞杯热水啥的捋捋思路，切忌在代码里面绕圈
+
+作业：
+	大嘴鱼项目：
+	1.多线程的类（🐟），放在ais中，uis是界面的设计，再把ais的对象加到界面中实现
+	2.注意__init__()中的类的属性
+	3.run(self)是在不断地进行的成员函数，把不断进行的运动加在里面
+
+

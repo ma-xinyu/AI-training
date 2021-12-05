@@ -1,0 +1,68 @@
+本周完成：
+
+	环境配置：
+		安装了vs code
+		安装了git
+
+		git服务器账号：http://39.98.127.39:3000
+
+
+	cmd的使用：（ctrl-z = exit）
+		1.改窗口名，改背景色，文字色
+		2.help color(指令名)：更详尽查看指令内容（看颜色）
+		3.where python：找程序（例如python）位置
+		4.git help 长
+		   git -h    短
+
+	python的基本使用：
+		
+		1.在vs code中终端运行的两种表示
+			格式：python -m 包路径.包路径.模块   （模块就是python文件名）
+			python -m py文件名（无后缀）
+			python py文件（加后缀）
+
+			在VSCodde中设置选择shell的类型bat（command prompt shell）
+
+			保存之后才能运行出来（泪
+	
+		2.python >> help(名) 获取在线帮助
+			     dir(对象)查看这个对象的成员
+		 
+			例：print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+				参数：objects -- 复数，表示可以一次输出多个对象。输出多个对象时，需要用 , 分隔。
+				          sep -- 用来间隔多个对象，默认值是一个空格。
+				          end -- 用来设定以什么结尾。默认值是换行符 \n，我们可以换成其他字符串。
+				          file -- 要写入的文件对象。
+				          flush -- 输出是否被缓存通常决定于 file，但如果 flush 关键字参数为 True，流会被强制刷新
+			      input(prompt=None, /)
+				参数：prompt:--提示信息
+
+		3.python提供产生列表的方法：range
+			range(start, stop[, step])
+				参数：start:  计数从 start 开始。默认是从 0 开始。例如range（5）等价于range（0， 5）;
+				          stop:  计数到 stop 结束，但不包括 stop。例如：range（0， 5） 是[0, 1, 2, 3, 4]没有5
+				          step：步长，默认为1。例如：range（0， 5） 等价于 range(0, 5, 1)
+
+		4.写好的.py文件打包添加到.bat文件使用：    例：@python -m list （list是.py文件）
+			bat文件是dos下的批处理文件。批处理文件是无格式的文本文件，它包含一条或多条命令。
+			它的文件扩展名为 .bat 或 .cmd。
+			在命令提示下输入批处理文件的名称，或者双击该批处理文件，系统就会调用cmd.exe按照该文件中各个命令出现的顺序来逐个运行它们  。
+
+
+	作业：
+		1.pr="|"+name+'|'+age+"|"+grade+"|"		#用字符串保存人员的信息，存到列表中
+		2.age=input("输入年龄：").ljust(8,' ')		#ljust函数，分配空位，l左对齐，r右对齐
+		3.print("┌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌┐")
+		   print("├╌╌╌╌╌╌╌╌┼╌╌╌╌╌╌╌╌┼╌╌╌╌╌╌╌╌┤")
+ 		   print("└╌╌╌╌╌╌╌╌┴╌╌╌╌╌╌╌╌┴╌╌╌╌╌╌╌╌┘")	#表格格式
+
+		最后的打印逻辑太憨批了，可以考虑优化
+		没有用到修改print默认值加|，可以考虑优化
+		.bat运行时会闪退，可在最后加一个空input()
+
+
+
+
+
+
+

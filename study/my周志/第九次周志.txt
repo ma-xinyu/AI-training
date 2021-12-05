@@ -1,0 +1,25 @@
+API封装：
+	FaceDetector类中要实现的功能：
+	1.图片预处理		pre_image
+	2.图像侦测(基于训练模型)	yolo4_det
+	3.返回有标注的图像		detect_mark
+	4.返回标注的名字		get_name
+
+	python setup.py install
+	从此，调用库，创建对象，调用函数就能实现识别人脸
+
+人脸登录的实现：
+	1.推理模型已经安装到python,需要时调用库即可（分别开发
+	2.两个窗体：guis中的：xxxhome ,	xxxlogin
+		先展示登录窗体	主窗体一直隐藏
+		找路径	help(类)：可以更清楚地理解
+	3.qt界面变为py文件：
+		在路径下：pyuic5 -o loginui.py login.ui
+	4.窗口大小固定：Login.setFixedSize(800, 520)
+	5.摄像头采集图像：
+		一直采集，直到采集到人脸，bool值 is_ok 才发生变化
+		将采集到的信息以信号 signal_face 的形式一直 emit 被窗口处理后显示
+		学会：合理地设置变量(全局/局部)；优雅地关闭线程
+
+	          加入人工智能部分：加入数据验证模块(biz->login->user.py
+		

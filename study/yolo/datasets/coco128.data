@@ -1,0 +1,4 @@
+classes=80
+train=datasets/train.txt
+valid=datasets/train.txt
+names=datasets/coco.names

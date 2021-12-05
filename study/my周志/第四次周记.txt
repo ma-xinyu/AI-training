@@ -1,0 +1,111 @@
+文档：
+	百度: opencv doc/ numpy doc
+	opencv: https://docs.opencv.org/4.5.0/
+	numpy : https://numpy.org/doc/1.19/reference/index.html 
+
+图像抓取和显示：
+
+一、图像的表示与基本操作：
+	1.opencv：
+		core：图像的基本表示
+		imgproc：图像处理
+		imgcodecs：图像解码：图像IO
+		videoio：摄像头与视频的IO
+	2.图像的加载与保存
+		retval=cv.imread(filename[, flags]) 	
+		例子：img = cv2.imread("import.png",cv2.IMREAD_COLOR)
+		返回类型：numpy.ndarray
+
+	3.图像格式
+		numpy.ndarray
+			|- 数组
+			|- 彩色图像是3维数组：(720, 1280, 3) == (height，width，channel/depth)
+				|- 深度在opencv：通道 + 通道的基本类型 
+					0xFF 00 00 : BGR 而在Qt中使用 RGB888
+		构造ndarray就是构造一个图像（不方便）
+		【构造数组（通道数只能是1，3，4）】
+
+	4.使用python的数据来构造ndarray
+	补充：解析表达式：
+		list = [5 for x in range(5)]
+		print(list)
+		>>[5, 5, 5, 5, 5]
+
+	5.图像的基本操作
+		
+		支持的图像：bmp/jpg/png/gif/tiff
+
+		下标运算：[]  ： 右：取值， 左：赋值
+			1. 整数，整数数组
+			2. 切片
+				|- 对象表示
+					slice(begin, end, step) : [begin, end)
+					slice(end) : begin = 0 ,step = 0
+				|- 表达式表示
+					begin:end:step	begin:end		end:
+				例子：
+				#表达式方式
+				#img[50:100 , 50:100:3 , 0] = 255 #0表示第一个通道
+				#img[: , : , 0] = 0     #去蓝
+				#img[img > 100] = 0     #全部位置的全部通道像素大于100的，改为0
+				#img[img[: , : , 0] > 100] = 0   #全部位置的第一个通道（蓝色元素）大于100，就改为0
+			3. 逻辑矩阵
+				<;>.......
+
+
+二、UI的设计：
+	01. 使用qtdesigner设计ui
+		x,y；windowTitle；QObject改为Video
+		A. 拖拽组件
+		B. 设置组件属性：位置大小，标签，以及其他，
+		C. 设置组件的名字： Video / lbl_video，text内容
+		D. *设置槽函数
+		E. *设计信号与槽
+	02. 把ui翻译成python
+		工具：pyuic5 -o 输出的文件(py文件)   被翻译的ui文件
+		#tool.bat
+	03. import python模块
+	04. 创建ui对象
+		self.ui = Ui_Video()
+	05. 使用ui对象
+		self.ui.setupUi(self)
+
+
+三、摄像头：
+	1.多任务实现
+	01. 继承QThread
+	02. override run函数
+	03. 创建摄像头对象
+	04. run实现摄像头的视频采集
+	05. 启动线程
+
+	2，数据抓取
+	self.dev = cv2.VideoCapture(0, cv2.CAP_DSHOW) 	#创建摄像头驱动
+	status, frame = self.dev.read()		#抓取信息
+
+
+四、代码和界面的结合：（摄像头功能和显示界面结合）
+
+使用信号传递图像
+	01. 定义信号（一直为True）	signal_video
+	02. 发送信号（run(self)中）	self.signal_video.emit(h,w,c,frame.tobytes())
+	03. 定义槽函数		def show_video(self , h , w , c , data)
+	04. 绑定信号与槽
+	（信号一直为True,一直运行槽函数show_video,一直在Qt界面输出QPixmap）
+
+在Qt中显示图像
+	Qt中显示图像就用QPixmap
+	（QPixmap主要是用于绘图，针对屏幕显示而最佳化设计，QImage主要是为图像I/O、图片访问和像素修改而设计的。
+	当图片小的情况下，直接用QPixmap进行加载，画图时无所谓，当图片大的时候如果直接用QPixmap进行加载，会占很大的内存，一般一张几十K的图片，用QPixmap加载进来会放大很多倍，
+	所以一般图片大的情况下，用QImage进行加载，然后转乘QPixmap用户绘制）
+
+图像的处理
+	在bvideo.py的run(self)中进行图像处理
+	
+
+
+
+
+
+
+

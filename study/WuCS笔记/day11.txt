@@ -1,0 +1,155 @@
+1. 上传文件
+	ftp/sftp
+	01. 登录/登出到服务器
+		sftp 用户@ip
+		bye/exit/quit
+
+	02. 服务器文件的操作
+		cd
+		pwd
+		mkdir
+		rmdir
+		rm
+		rename
+		chmod 
+		chown
+		ln -s = symlink
+		ls 
+	03. 本地文件的操作
+		!本地命令
+		lcd
+		lmkdir
+
+	04. 文件上传/下载
+		put
+		get
+2. 远程终端
+	01. 登录/登出
+		ssh 用户@ip
+	02. Linux的文件系统
+		cd
+		ls
+		mkdir
+		rmdir
+		rm
+		mv
+		chmod
+		chown
+	d           rwx          r-x    r-x        9   root    root    4096    Dec 10 14:39  day11yolo
+    文件类型    拥有者权限    组用户  其他用户   块   拥有者   组      大小     文件日期       文件名
+    	|-
+    		d
+    		-/f
+    		c
+    		b
+    		p (one-way)
+    		s (two-way)
+    		l
+
+
+    文件权限：
+    	chmod  权限  文件
+    		权限：
+    			字符： ugoa -/+  xwrsSt
+    			数字 : 0 7 7 7 7
+    			        s  x x x   1
+    			        S  w w w   2
+    			        t  r r r   4 
+
+3. vi
+	文本编辑器（最强大的文本编辑器）
+
+  
+4. yolo的训练
+	续行符  ^ 去掉，换行去掉
+	python3  python 3.6
+	python   python 2.7
+
+5. 测试/验证
+
+6. 数据集工程
+	01. 准备图像数据集
+	02. 安装标注工具：精灵标注助手
+	03. 标注图像
+		ctrl + s
+		->   <-
+	04. 格式转换
+		YOLO的标签格式：YOLO_mark
+		类别id cx, cy, w, h
+		0  10，10，200，200
+	--------------------
+{
+	"path":"C:\\WuCS\\facesds\\IMG_3048.JPG",
+	"outputs":{
+		"object":[
+			{
+				"name":"yangqiang",
+				"bndbox":{
+					"xmin":516,
+					"ymin":787,
+					"xmax":1648,
+					"ymax":2517
+				}
+			}
+		]
+	},
+	"time_labeled":1607602451166,
+	"labeled":true,
+	"size":{
+		"width":2320,
+		"height":3088,
+		"depth":3
+	}
+}
+----------------------------
+	
+	05. 创建数据集工程
+		C:\WUCS\01TECH\DAY11\DATASETS
+		│   faces.data
+		│   faces.names
+		│   train.txt
+		│   valid.txt
+		│
+		└───faces
+		    ├───images
+		    │   └───train
+		    └───labels
+		        └───train
+	06. 图像管理
+		拷贝图像到
+			faces
+		    ├───images
+		    │   └───train
+
+	07. 标签管理
+			faces
+		    |
+		    └───labels
+		        └───train
+	08. 训练与测试数据集列表
+		train.txt  (建议写一个程序生成列表)
+
+	09. 类别列表
+		faces.names
+	10. 数据集工程配置
+		faces.data
+	--------------------
+	11. 修改模型
+		filters=255  （5 + 类别数）* 3
+				x1, y1, x2, y2, conf, p1, p2, p3, p4
+					   5                    类别数
+		classes=80 
+	12. 在run_train.bat/run_test.py修改数据集的配置
+
+作业：
+	1. 采集人脸数据集120-200 （一张图像可以多个人脸）
+	2. 标注并生成数据集工程
+	3. 训练出一个模型：R>85%   P>90%, 分析测试报告：识别能力弱的目标需要做单独的分析
+	---------------------
+	业务的数据集：200-400
+
+	----deadline：
+		Qt GUI/数据集/模型：星期天上午开始检查
+
+
+

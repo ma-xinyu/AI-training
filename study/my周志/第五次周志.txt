@@ -1,0 +1,25 @@
+jupyterlab的使用：
+（LaTex语法：https://www.jianshu.com/p/d26c0b3b71ea）
+（show math as -> tex commands）
+	1.M键进行 makedown 和 code 的转换
+	2. - $$h(x)= \int _{- \infty} ^{\infty} f(\tau) g(x - \tau) \mathrm{d} \tau$$
+		\int = 积分；\infty = 无穷；\tau = 涛；、mathrm{d} = 罗马数字d
+	3.![输出图片](dd.png)
+
+离散的卷积公式的理解：（平滑运算 or 滤波运算）
+	1.f(i,j)是3*3矩阵，g(x-i,y-j)是一个3*3模块，运算结果是周围的点加权变为一个新的像素点
+	2.原图像是21*21，卷积核是3*3，那么新图像是19*19
+	3.卷积运算就是在求梯度特征
+
+图像特征：
+	像素的变化：
+	Source Image -(Kernel) > Feature Map
+	机器学习就是：找到一个Kernel，使我们得到的Feature Map更加容易识别（分类/侦测/分割/跟踪）
+		- 多次卷积运算 -> 特征 -> 分类： 卷积神经网络 
+
+
+作业：
+	视频采集中添加特征处理功能
+	模仿过程运用拉普拉斯	
+		|- https://docs.opencv.org/4.2.0/d4/d86/group__imgproc__filter.html
+

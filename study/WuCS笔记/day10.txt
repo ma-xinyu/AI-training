@@ -1,0 +1,47 @@
+技术补充:
+	卷积神经网络：手写数字识别
+		Lenet-5
+		AlexNet
+		ResNet
+		GoogLeNet
+		EfficentNet
+		MobileNet
+		......
+
+项目工程：
+	1. 体验YOLO训练
+		https://pjreddie.com/darknet/yolo/
+		https://github.com/ultralytics/yolov5
+		
+		01. models.py
+		02. utils
+		03. cfg/yolov4_tiny.cfg
+			Netron
+		04. datasets ： 制作自己的数据集工程
+			安装：精灵标注助手 		
+		05. weights/yolov4-tiny.pt 初始化权重
+		---------------------------------------
+		06. 训练：
+			train.py
+			run_train.bat
+
+		07. 测试与验证
+			test.py
+			run_test.bat
+
+		08. 侦测效果
+			detect.py
+			run_detect.bat
+	2. 定制数据集训练
+	3. 封装推理模型
+	-----
+	训练两个模型：人脸登录/业务AI模型
+
+
+
+
+-- 
+作业：
+	1. 项目GUI全部完成
+	2. 使用coco128数据集训练YOLO模型，p>=80%, R>=90%
+	

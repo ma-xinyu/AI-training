@@ -1,0 +1,338 @@
+Qt安装:
+	1. 安装第三方模块
+	pip install PyQt5
+	技巧：      1.在百度输入 pip 模块名，就能获取安装帮助
+		2. pip list 查看所有安装的模块
+		3. pip list  | find "查找的关键字"
+		4.dir *.pyd 动态库文件
+
+C:\Users\Asus>pip list | find "Qt"
+PyQt5               5.15.1
+PyQt5-sip           12.8.1
+
+
+	2. 安装Qt的工具
+		链接：https://pan.baidu.com/s/1U_2U6-58HJdjS_ZyOq4zPg 
+		提取码：9bun 
+		复制这段内容后打开百度网盘手机App，操作更方便哦--来自百度网盘超级会员V3的分享
+
+	3. 使用类
+		创建对象
+		调用对象的成员函数完成数据处理
+	4. Qt应用编程模式	
+		1.创建QApplication （管理应用程序）
+		2.创建窗体与组件
+		3.Application阻塞监控事件
+
+		---补充
+		QtWidgets ： Qt GUI所有的类
+		QtCore ： 负责系统层面的封装：QThread
+		QtGui： 负责底层的图形绘制
+		使用动态库
+			与python的模块完全一样
+		---补充
+		import与from的使用
+		方式一：
+			import PyQt5.QtWidgets
+				PyQt5.QtWidgets.QAppliction
+		方式二：
+			from PyQt5.QtWidgets import QApplication, QDialog
+				QApplication
+
+	3.5. 继承使用（override）
+		： 复用
+		： 创新：overide， 添加新的过程
+
+	------
+	帮助文档：
+		https://doc.qt.io/qt-5/classes.html
+
+		编程模式：
+			继承QApplication         -------|
+				|- 继承窗体QDialog   --------| - 类与类的关系： 依赖关系： 聚合关系 ： 包含关系
+
+
+
+
+Qt:
+	1.基本模板
+	#引入模块
+	import PyQt5.QtWidgets
+	import PyQt5.QtCore
+	import PyQt5.QtGui
+	import sys
+
+	#创建对象
+	app = PyQt5.QtWidgets.QApplication([])   #传递命令行参数 = main的argv(argc,argv,arge)
+
+	#创建窗体
+	dlg = PyQt5.QtWidgets.QDialog()
+	dlg.show()
+
+	status = app.exec() #开始循环处理事件、信号等
+	sys.exit(status)
+
+	2.简单的按钮、标签
+	dlg = QDialog()
+	btn = QPushButton("ok",dlg)	#按钮
+	lbl = QLabel("<font color=red><b><s>哈哈哈</s></b></font>",dlg)	#变色 加粗 斜体  <h1><h2>字体渐小
+	
+	
+	 .resize()	#大小； .move()	#移动位置
+
+	3.继承
+	ex03、wapplication、wdialog 展示了继承；模板都一样
+
+	在wapplication种加入from uis.wdialog import WDialog(有组织结构)：
+	将继承的wdialog加到应用层,让对话框成为应用的成员，应用层管理窗口，窗口管理按钮 good!
+
+	4.在dialog.py中，self表示窗口的性质，self.btn表示按钮的属性
+
+	5.#信号与槽函数绑定一起
+        	self.btn.clicked.connect(self.handle_clicked):
+	handle_clicked(self) 是槽函数
+	btn.clicked 	是事件
+
+
+
+
+Git：
+          1.场景一：（每个项目只做一次）
+	第一次创建仓库初始化，提交master公共文件
+	README.md
+	其他文件
+	（自己测试
+	01. 创建工作目录
+		并且使用cd切换到工作路径   cd \
+	02. 初始化为本地仓库
+		git init
+	03. 第一次使用需要设置个人的名字与邮件
+		git config --global user.name "yangqiang"
+		git config --global user.email "38395870@11.com"
+	--------------------------------
+	04. 编码工作 + README.md
+		- README.md建议创建
+	05. 添加代码到仓库
+		git add  *
+	06. 设置提交的信息
+		git commit -m 第一从更新 -a
+	07. 提交前设置服务器参数
+		- 设置本地代理名
+		查看：git remote -v
+		设置：git remote add ma http://  yangqiang:yang123(账号：密码)  @39.98.127.39:3000/yangqiang/Test2019.git(仓库的链接)
+	08. 物理更新服务器代码
+		git push --set-upstream ma master (master分支名，服务器默认的分支是master)
+
+
+
+          2.场景二：提交作业（每天都做，做自己分支的任务）
+
+	01. 创建工作目录
+		cd \;	cd wk2019\
+	02. 初始化仓库
+		git init
+
+C:\wk2019>git init
+Initialized empty Git repository in C:/wk2019/.git/
+
+	----------------准备工作
+	03. 建立服务器代理
+		git remote add origin http://yangqiang:yang123@39.98.127.39:3000/yangqiang/Test2019.git
+
+C:\wk2019>git remote add origin http://yangqiang:yang123@39.98.127.39:3000/yangqiang/Test2019.git
+
+C:\wk2019>git  remote -v
+origin  http://yangqiang:yang123@39.98.127.39:3000/yangqiang/Test2019.git (fetch)
+origin  http://yangqiang:yang123@39.98.127.39:3000/yangqiang/Test2019.git (push)
+
+		--删除
+		git remote remove  代理名
+
+	04. 拉取代码
+		git pull --rebase origin master    # master是主分支名，也可以直接拉取某个分支
+
+C:\wk2019>git pull --rebase origin master
+remote: Enumerating objects: 30, done.
+remote: Counting objects: 100% (30/30), done.
+remote: Compressing objects: 100% (23/23), done.
+remote: Total 30 (delta 5), reused 0 (delta 0)
+Unpacking objects: 100% (30/30), 4.16 KiB | 17.00 KiB/s, done.
+From http://39.98.127.39:3000/yangqiang/Test2019
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> origin/master
+	
+	----------------拉取代码
+	05. 查看分支
+		git branch
+
+C:\wk2019>git branch
+* master
+
+	06. 创建分支
+		git branch 分支名
+
+C:\wk2019>git branch martin
+
+C:\wk2019>git branch
+  martin
+* master
+
+	07. 切换分支
+		git checkout 分支名
+
+C:\wk2019>git checkout martin
+Switched to branch 'martin'
+
+C:\wk2019>git branch
+* martin
+  master
+
+	----------------分支操作
+	08. 开始开发，产生目录与代码
+		加了新的会有 U 提示
+	09. 添加新的文件到仓库
+		git add *
+	10. 设置提交的消息
+		git commit -m  更新了GUI  -a
+
+C:\wk2019>git add *
+
+C:\wk2019>git commit -m 更新 -a
+[martin abe33eb] 更新
+ 2 files changed, 2 insertions(+)
+ create mode 100644 day04/test1.py
+ create mode 100644 test.py
+
+	11. 提交
+		git push --set-upstream origin louis
+
+C:\wk2019>git push --set-upstream origin martin
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 430 bytes | 143.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0), pack-reused 0
+To http://39.98.127.39:3000/yangqiang/Test2019.git
+   42f7ed0..abe33eb  martin -> martin
+Branch 'martin' set up to track remote branch 'martin' from 'origin'.
+
+
+
+          3.场景三：（项目中可能做两三次，组长汇总代码，组员再从主分支拉取，再加自己update的内容）
+	最终或者阶段成果代码的分支合并；
+	01. 创建工作目录（建一个用于汇总的目录）
+C:\wk2019>cd \
+
+C:\>mkdir m2019
+
+C:\>cd m2019
+
+C:\m2019>
+	02. 克隆服务器仓库
+		git clone http://yangqiang:yang123@39.98.127.39:3000/yangqiang/Test2019
+
+C:\m2019>git clone http://yangqiang:yang123@39.98.127.39:3000/yangqiang/Test2019.git
+Cloning into 'Test2019'...
+remote: Enumerating objects: 326, done.
+remote: Counting objects: 100% (326/326), done.
+remote: Compressing objects: 100% (263/263), done.
+remote: Total 326 (delta 51), reused 0 (delta 0)
+Receiving objects: 100% (326/326), 1.96 MiB | 294.00 KiB/s, done.
+Resolving deltas: 100% (51/51), done.
+
+（查看）
+C:\m2019>dir
+ 驱动器 C 中的卷是 OS
+ 卷的序列号是 C492-37F9
+
+ C:\m2019 的目录
+
+2020/11/24  11:32    <DIR>          .
+2020/11/24  11:32    <DIR>          ..
+2020/11/24  11:32    <DIR>          Test2019
+               0 个文件              0 字节
+               3 个目录 56,146,259,968 可用字节
+
+C:\m2019>cd Test2019
+
+C:\m2019\Test2019>git remote -v（克隆仓库主动创建的一个代理）
+origin  http://yangqiang:yang123@39.98.127.39:3000/yangqiang/Test2019.git (fetch)
+origin  http://yangqiang:yang123@39.98.127.39:3000/yangqiang/Test2019.git (push)
+
+C:\m2019\Test2019>git branch（本地只有主分支，所以需要下一步拉取子分支）
+* master
+
+	03. 拉取需要合并的分支（同时切换本地分支）
+		git checkout -b louis（本地建立的分支）  origin/louis（从git拉取的子分支）
+
+C:\m2019\Test2019>git checkout -b maxinyu origin/louis
+Switched to a new branch 'maxinyu'
+Branch 'maxinyu' set up to track remote branch 'louis' from 'origin'.
+
+（查看）
+C:\m2019\Test2019>git branch
+  master
+* maxinyu
+
+	04. 合并分支
+		- 注意：确保在master分支进行合并：把分支合并到master
+		git merge louis
+
+（在maxinyu中合并maxinyu，我说这没用）
+C:\m2019\Test2019>git merge maxinyu
+Already up to date.
+
+（因为louis没更新，所以重新从03建了一个mxy拉取martin分支）
+（结果是小组的人的代码都汇总到了主分支）
+C:\m2019\Test2019>git checkout -b mxy origin/martin
+Switched to a new branch 'mxy'
+Branch 'mxy' set up to track remote branch 'martin' from 'origin'.
+
+C:\m2019\Test2019>git branch
+  master
+  maxinyu
+* mxy
+
+C:\m2019\Test2019>git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+C:\m2019\Test2019>git merge mxy
+Updating 8a58098..abe33eb
+Fast-forward
+ day04/test1.py | 1 +
+ test.py        | 1 +
+ 2 files changed, 2 insertions(+)
+ create mode 100644 day04/test1.py
+ create mode 100644 test.py
+
+	05. 提交主分支到仓库
+		. 添加代码带仓库
+			git add  *
+		. 设置提交信息
+			git commit -m 第一阶段合并 -a
+		. 物理更新文件
+			git push --set-upstream origin master 
+
+C:\m2019\Test2019>git add *
+
+C:\m2019\Test2019>git commit -m 第一阶段合并test -a
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+C:\m2019\Test2019>git push --set-upstream origin master	（这个origin是克隆仓库自己建好的）
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To http://39.98.127.39:3000/yangqiang/Test2019.git
+   8a58098..abe33eb  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+	
+
+
+
+
+

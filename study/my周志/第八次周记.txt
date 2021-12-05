@@ -1,0 +1,74 @@
+卷积特征训练：
+          卷积神经网络
+	loss_f：计算损失值
+	astype ()：格式转换：通常用于将对象转换为指定的dtype.astype()函数。
+		它还可以将任何合适的现有列转换为分类类型。
+	item()：把字典中每对key和value组成一个元组，并把这些元组放在列表中返回
+	
+	#判定是否支持GPU
+        		self.CUDA = torch.cuda.is_available()
+
+		放到GPU的东西:
+		模型权重参数
+		训练集数据	
+		测试集数据
+			最后的下标值和概率值还是要返还给CPU
+
+	模型的保存：
+		os 目录保存
+		#获取模块的安装路径
+		current_dir = os.path.dirname(__file__)
+		...
+		self.mod_file = os.path.join(current_dir,"mods/lenet5.pt")
+		(无论安装到哪都能找到这个绝对路径)
+
+项目工程：
+	1.体验YOLO训练
+		https://pjreddie.com/darknet/yolo/
+		https://github.com/ultralytics/yolov5
+		01.models.py	核心
+		02.utils		类和功能函数
+		03.cfg/yolov4_ting.cfg	神经网络模型
+			Netron
+		04.datasets : 制作自己的数据集
+		05.weights/yolov4-tiny.pt	初始化权重
+		----------------------------------------------
+		06.训练：train.py		run_train.bat
+		07.测试和验证：test.py	run_train.bat
+		08.侦测效果：detect.py	run_detect.bat
+	2.定制数据集训练
+	3.封装推理模型
+	---------------
+	训练两个模型：人脸模型/业务AI模型
+	人脸模型：
+		1.收集图片
+		2.精灵标注助手标注（英文）
+		3.json导出
+		4.format检查
+		5.datasets数据集建立（目录建立）
+		│   faces.data
+			│   faces.names
+			│   train.txt
+			│   valid.txt
+			│
+			└───faces
+		    		├───images
+		    		│   	└───train
+		    		└───labels
+		        			└───train
+		6.拷贝图像
+		7.faces.names	标签中的名
+		   faces.data	仿写就行
+		   train.txt		程序编写输出有顺序的文本
+			
+		   cfg:yolo4-tiny.cfg	classes=4 filters=（5 + 类别数）* 3
+
+感想：
+	1.要利用自己已经有的能力为工作创建便利
+	   比如可以编写小程序给文件夹中的照片重命名为001.jpg，002.jpg...
+	2.整个任务的过程中要注意细节，如标注不能用中文，改参数要改准确
+	   熟能生巧，每个过程都尽量多练几次
+
+作业：
+	1.项目GUI全部完成
+	2.使用coco128数据集训练YOLO模型，p>=80%，R>=90%

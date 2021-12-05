@@ -1,0 +1,4 @@
+classes=4
+train=datasets/train.txt
+valid=datasets/train.txt
+names=datasets/faces.names

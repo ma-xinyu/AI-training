@@ -1,0 +1,68 @@
+1. 技术补充
+	1. 推理项目工程
+		day12
+			|-<yolov4>
+				|- <utils>
+				|- models.py
+				|- <data>
+					|- yolov4-tiny.cfg
+					|- best_yolov4-tiny.pt -> faces.pt
+
+			|- test.py
+	2. 实现YOLO网络模型
+		1. models.py
+		2. <utils>
+		3. <data>
+			| - yolov4-tiny.cfg
+
+	3. 准备预训练好的模型
+		4. best_yolov4-tiny.pt -> faces.pt
+		5. faces.names拷贝数据目录
+-------------------------------
+│   test.py
+│
+└───yolov4
+    │   models.py
+    │
+    ├───data
+    │       faces.pt
+    │       yolov4-tiny.cfg
+    |       faces.names
+    │       __init__.py
+    │
+    └───utils
+            adabound.py
+            datasets.py
+            evolve.sh
+            gcp.sh
+            google_utils.py
+            layers.py
+            parse_config.py
+            torch_utils.py
+            utils.py
+            __init__.py
+-------------------------------
+	4. 实现推理API
+		01. 创建模块文件facedet.py
+		02. 修改包路径
+			利用别人的实现到自己包路径，需要修改包路径。
+
+		03. 在模块文件import
+		
+		04. 创建类
+				|- __init__ : 条件
+				|- detect(self, img)-> int<类别>, float<概率>, int<目标-x1>, int<目标-y1>, int<目标-x2>, int<目标-y2>
+
+		05. 实现__init_的条件
+		06. 实现侦测过程
+		07. 其他
+				类别id与姓名的转换  （faces.names）
+
+	5. 调用推理封装API
+
+
+作业：
+	
+	1. 完成人脸登录的推理封装
+	2. 业务模型的数据集
+	3. 业务模型的训练模型
