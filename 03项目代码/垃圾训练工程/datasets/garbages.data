@@ -1,0 +1,4 @@
+classes=14
+train=datasets/train.txt
+valid=datasets/train.txt
+names=datasets/garbages.names
