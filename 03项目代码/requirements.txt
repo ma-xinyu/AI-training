@@ -1,0 +1,3 @@
+1.下载GAPI.zip，在包路径下执行python setup.py install
+2.下载FAPI.zip，在包路径下执行python setup.py install
+3.下载Garbage.zip，在包路径下执行run_app.bat
